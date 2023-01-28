@@ -4,7 +4,14 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
+    
+
     /* Completeness */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,                  /* Skip type checking all .d.ts files. */
+    "types": [
+      "node",
+      "@types/styled-components-react-native"
+
+    ]  
   }
 }
