@@ -17,6 +17,7 @@ type EventDataT = {
   date: FirebaseFirestoreTypes.Timestamp;
   price: string;
   category: string;
+  image: string;
 };
 
 const formatCategory = (category: string): EventCategories => {

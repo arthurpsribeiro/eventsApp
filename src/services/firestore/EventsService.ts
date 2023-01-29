@@ -15,6 +15,7 @@ const getAllEvents = async (): Promise<EventT[]> => {
         category: doc.data().category,
         spot: doc.data().spot,
         price: doc.data().price,
+        image: doc.data().image,
       });
       return formatedEvent;
     });
