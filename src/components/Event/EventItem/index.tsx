@@ -9,28 +9,28 @@ import {
   ButtonTitle,
 } from './styles';
 
-type eventSpot = {
+type EventSpot = {
   spotName: string;
   spotCity: string;
   spotState: string;
 };
 
-export enum eventCategories {
+export enum EventCategories {
   BUSINESS,
   EDUCATION,
 }
 
-type event = {
+export type Event = {
   id: string;
   name: string;
-  spot: eventSpot;
-  date: string;
+  spot: EventSpot;
+  date: Date;
   price: string;
-  category: eventCategories;
+  category: EventCategories;
 };
 
 interface EventItemProps {
-  item: event;
+  item: Event;
 }
 
 const EventItem: React.FC<EventItemProps> = ({}: EventItemProps) => {
@@ -38,7 +38,7 @@ const EventItem: React.FC<EventItemProps> = ({}: EventItemProps) => {
     console.log('purchase button');
   };
   return (
-    <Container category={eventCategories.BUSINESS}>
+    <Container category={EventCategories.BUSINESS}>
       <Title>Nome do evento</Title>
       <ContainerRow>
         <InfoText>São Paulo - SP</InfoText>

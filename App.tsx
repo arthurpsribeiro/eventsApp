@@ -5,9 +5,9 @@ import { SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
-import theme from './source/styles/theme';
+import theme from './src/styles/theme';
 
-import Routes from './source/routes';
+import Routes from './src/routes';
 
 const App = () => {
   return (

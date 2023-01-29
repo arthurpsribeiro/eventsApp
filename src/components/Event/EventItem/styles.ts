@@ -2,16 +2,16 @@ import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { css } from 'styled-components';
 
-import { eventCategories } from '.';
+import { EventCategories } from '.';
 import theme from '../../../styles/theme';
 
 type ItemContainerProps = {
-  category: eventCategories;
+  category: EventCategories;
 };
 
-const categoriesColorsTable = new Map<eventCategories, string>([
-  [eventCategories.BUSINESS, theme.colors.main],
-  [eventCategories.EDUCATION, theme.colors.secondary],
+const categoriesColorsTable = new Map<EventCategories, string>([
+  [EventCategories.BUSINESS, theme.colors.main],
+  [EventCategories.EDUCATION, theme.colors.secondary],
 ]);
 
 export const Container = styled.View`
