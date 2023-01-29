@@ -13,12 +13,19 @@ export default {
     attention_light: 'rgba(232, 63, 91, 0.6)',
 
     button_primary: '#F2A513',
-    button_secondary: '#EE5444',
+    button_secondary: '#127CE1',
 
     text: '#969CB2',
     text_dark: '#000000',
 
     shape: '#ffffff',
     shape_dark: '#000000',
+  },
+  fontSize: {
+    text_xs: '12',
+    text_sm: '14',
+    text_base: '16',
+    text_lg: '18',
+    text_xl: '20',
   },
 };

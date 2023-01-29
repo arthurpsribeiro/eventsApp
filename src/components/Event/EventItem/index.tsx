@@ -2,11 +2,15 @@ import React from 'react';
 
 import {
   Container,
-  ContainerRow,
+  InfoRow,
   Title,
   InfoText,
   PurchaseButton,
   ButtonTitle,
+  EventThumb,
+  InfoContainer,
+  PriceText,
+  TouchableWrapper,
 } from './styles';
 
 type EventSpotT = {
@@ -22,6 +26,7 @@ export enum EventCategories {
 
 export type EventT = {
   id: string;
+  image: string;
   name: string;
   spot: EventSpotT;
   date: Date;
@@ -39,21 +44,25 @@ const EventItem: React.FC<IEventItemProps> = ({
   purchaseButtonCallBack,
 }: IEventItemProps) => {
   return (
-    <Container category={event.category}>
-      <Title>{event.name}</Title>
-      <ContainerRow>
-        <InfoText>
-          {event.spot.city} - {event.spot.state}
-        </InfoText>
-        <InfoText>R$ {event.price}</InfoText>
-      </ContainerRow>
-      <ContainerRow>
-        <InfoText>{event.date.toLocaleDateString()}</InfoText>
-        <PurchaseButton onPress={() => purchaseButtonCallBack()}>
-          <ButtonTitle> Comprar </ButtonTitle>
-        </PurchaseButton>
-      </ContainerRow>
-    </Container>
+    <TouchableWrapper onPress={() => console.log('oi')}>
+      <Container category={event.category}>
+        <EventThumb source={{ uri: event.image }} />
+        <InfoContainer>
+          <Title>{event.name}</Title>
+          <InfoText>
+            {event.spot.name} - {event.spot.state}
+          </InfoText>
+          <InfoText>{event.date.toLocaleDateString()}</InfoText>
+
+          <InfoRow>
+            <PriceText>R$ {event.price}</PriceText>
+            <PurchaseButton onPress={() => purchaseButtonCallBack()}>
+              <ButtonTitle> Comprar </ButtonTitle>
+            </PurchaseButton>
+          </InfoRow>
+        </InfoContainer>
+      </Container>
+    </TouchableWrapper>
   );
 };
 
