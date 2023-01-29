@@ -1,16 +1,27 @@
 import React from 'react';
 import { FlatList, Text } from 'react-native';
-import EventItem from '../../components/Event/EventItem';
+import { useEvents } from '../../hooks';
+import { EventT, EventItem } from '../../components';
 
 import { Container, Separator } from './styles';
 
 const Home: React.FC = () => {
+  const { events } = useEvents();
+
+  const handlePurchaseButton = async (event: EventT) => {
+    console.log('purchase button', event);
+  };
   return (
     <Container>
       <Text> Input de Busca</Text>
       <FlatList
-        data={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-        renderItem={({}) => <EventItem />}
+        data={events}
+        renderItem={({ item }) => (
+          <EventItem
+            event={item}
+            purchaseButtonCallBack={() => handlePurchaseButton(item)}
+          />
+        )}
         ItemSeparatorComponent={Separator}
         showsVerticalScrollIndicator={false}
       />

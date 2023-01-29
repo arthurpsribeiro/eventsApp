@@ -9,10 +9,10 @@ import {
   ButtonTitle,
 } from './styles';
 
-type EventSpot = {
-  spotName: string;
-  spotCity: string;
-  spotState: string;
+type EventSpotT = {
+  name: string;
+  city: string;
+  state: string;
 };
 
 export enum EventCategories {
@@ -20,33 +20,36 @@ export enum EventCategories {
   EDUCATION,
 }
 
-export type Event = {
+export type EventT = {
   id: string;
   name: string;
-  spot: EventSpot;
+  spot: EventSpotT;
   date: Date;
   price: string;
   category: EventCategories;
 };
 
-interface EventItemProps {
-  item: Event;
+interface IEventItemProps {
+  event: EventT;
+  purchaseButtonCallBack: () => void;
 }
 
-const EventItem: React.FC<EventItemProps> = ({}: EventItemProps) => {
-  const handlePurchaseButton = () => {
-    console.log('purchase button');
-  };
+const EventItem: React.FC<IEventItemProps> = ({
+  event,
+  purchaseButtonCallBack,
+}: IEventItemProps) => {
   return (
-    <Container category={EventCategories.BUSINESS}>
-      <Title>Nome do evento</Title>
+    <Container category={event.category}>
+      <Title>{event.name}</Title>
       <ContainerRow>
-        <InfoText>São Paulo - SP</InfoText>
-        <InfoText>R$ 20,00</InfoText>
+        <InfoText>
+          {event.spot.city} - {event.spot.state}
+        </InfoText>
+        <InfoText>R$ {event.price}</InfoText>
       </ContainerRow>
       <ContainerRow>
-        <InfoText>20/02/2023</InfoText>
-        <PurchaseButton onPress={() => handlePurchaseButton()}>
+        <InfoText>{event.date.toLocaleDateString()}</InfoText>
+        <PurchaseButton onPress={() => purchaseButtonCallBack()}>
           <ButtonTitle> Comprar </ButtonTitle>
         </PurchaseButton>
       </ContainerRow>
