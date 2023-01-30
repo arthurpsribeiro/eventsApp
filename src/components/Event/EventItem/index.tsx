@@ -1,4 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { HomeScreenNavigationProps } from '../../../routes/stackRoutes/HomeStack';
 
 import {
   Container,
@@ -29,7 +31,7 @@ export type EventT = {
   image: string;
   name: string;
   spot: EventSpotT;
-  date: Date;
+  date: string;
   price: string;
   category: EventCategories;
 };
@@ -43,8 +45,15 @@ const EventItem: React.FC<IEventItemProps> = ({
   event,
   purchaseButtonCallBack,
 }: IEventItemProps) => {
+  const navigation = useNavigation<HomeScreenNavigationProps>();
+
+  const handleEventPress = (singleEvent: EventT) => {
+    // console.log('id', singleEvent);
+    navigation.navigate('EventDetails', { event: singleEvent });
+  };
+
   return (
-    <TouchableWrapper onPress={() => console.log('oi')}>
+    <TouchableWrapper onPress={() => handleEventPress(event)}>
       <Container category={event.category}>
         <EventThumb source={{ uri: event.image }} />
         <InfoContainer>
@@ -52,7 +61,7 @@ const EventItem: React.FC<IEventItemProps> = ({
           <InfoText>
             {event.spot.name} - {event.spot.state}
           </InfoText>
-          <InfoText>{event.date.toLocaleDateString()}</InfoText>
+          <InfoText>{event.date}</InfoText>
 
           <InfoRow>
             <PriceText>R$ {event.price}</PriceText>

@@ -26,8 +26,12 @@ const formatCategory = (category: string): EventCategories => {
     : EventCategories.EDUCATION;
 };
 
-const formatDate = (date: FirebaseFirestoreTypes.Timestamp): Date => {
-  return new firestore.Timestamp(date.seconds, date.nanoseconds).toDate();
+const formatDate = (date: FirebaseFirestoreTypes.Timestamp): string => {
+  const parsedDate = new firestore.Timestamp(
+    date.seconds,
+    date.nanoseconds,
+  ).toDate();
+  return parsedDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 };
 
 export const formatEventData = (eventData: EventDataT): EventT => {
