@@ -15,7 +15,7 @@ export default {
     button_primary: '#F2A513',
     button_secondary: '#127CE1',
 
-    text: '#969CB2',
+    text: '#4D5051',
     text_dark: '#000000',
 
     shape: '#ffffff',

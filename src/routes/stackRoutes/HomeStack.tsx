@@ -31,13 +31,12 @@ const HomeStackNavigator = () => (
     <HomeStack.Screen
       name="Home"
       component={Home}
-      initialParams={{}}
       options={{ headerShown: false }}
     />
     <HomeStack.Screen
       name="EventDetails"
       component={EventDetails}
-      initialParams={{}}
+      options={{ headerBackTitle: 'Voltar', title: 'Detalhes do Evento' }}
     />
   </HomeStack.Navigator>
 );

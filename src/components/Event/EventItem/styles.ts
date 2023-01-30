@@ -18,9 +18,9 @@ export const Container = styled.View`
   padding: 5px;
   background-color: ${theme.colors.background_secondary};
   flex-direction: row;
+  border-radius: 5px;
 
   ${css`
-    border-radius: 5px;
     border-left-color: ${({ category }: ItemContainerProps) =>
       categoriesColorsTable.get(category)};
     border-left-width: 10px;
@@ -51,7 +51,7 @@ export const Title = styled.Text`
 export const InfoText = styled.Text`
   font-size: ${theme.fontSize.text_xs}px;
   color: ${theme.colors.text};
-  font-weight: 600;
+  font-weight: 400;
   margin: 2px 0;
 `;
 
