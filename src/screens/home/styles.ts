@@ -9,3 +9,7 @@ export const Separator = styled.View`
 `;
 
 export const Loading = styled.ActivityIndicator``;
+
+export const VerticalSpacing = styled.View`
+  margin: 10px 0px;
+`;

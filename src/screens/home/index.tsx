@@ -1,9 +1,9 @@
 import React from 'react';
-import { ActivityIndicator, Alert, FlatList, Text } from 'react-native';
+import { Alert, FlatList } from 'react-native';
 import { useEvents } from '../../hooks';
-import { EventT, EventItem } from '../../components';
+import { EventT, EventItem, Search } from '../../components';
 
-import { Container, Loading, Separator } from './styles';
+import { Container, Loading, Separator, VerticalSpacing } from './styles';
 
 const Home: React.FC = () => {
   const { events, loading } = useEvents();
@@ -13,7 +13,8 @@ const Home: React.FC = () => {
   };
   return (
     <Container>
-      {/* <Text> Input de Busca</Text> */}
+      <Search />
+      <VerticalSpacing />
       {loading ? (
         <Loading size={'large'} />
       ) : (
