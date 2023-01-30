@@ -1,10 +1,13 @@
 import React from 'react';
+import { useEvents } from '../../hooks';
 
 import { Container, SearchInput, Icon } from './styles';
 
 const Search: React.FC = () => {
-  const handleSearch = (searchParam: string) => {
-    console.log(searchParam);
+  const { searchEvent } = useEvents();
+
+  const handleSearch = async (searchParam: string) => {
+    searchEvent(searchParam);
   };
 
   return (
