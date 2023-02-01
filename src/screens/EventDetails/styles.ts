@@ -4,6 +4,7 @@ import { css } from 'styled-components';
 
 import theme from '../../styles/theme';
 import { EventCategories } from '../../components';
+import { Platform } from 'react-native';
 
 type ContentContainerProps = {
   category: EventCategories;
@@ -75,7 +76,7 @@ export const InfoDescription = styled.Text`
 
 export const PurchaseButton = styled(RectButton)`
   align-items: center;
-  padding: 10px 15px 10px 15px;
+  padding: ${Platform.OS === 'ios' ? '10px  ' : '5px'};
 
   border-radius: 5px;
   background-color: ${theme.colors.button_secondary};

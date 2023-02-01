@@ -4,6 +4,7 @@ import { css } from 'styled-components';
 
 import { EventCategories } from '.';
 import theme from '../../../styles/theme';
+import { Platform } from 'react-native';
 
 type ItemContainerProps = {
   category: EventCategories;
@@ -63,7 +64,7 @@ export const PriceText = styled.Text`
 `;
 
 export const PurchaseButton = styled(RectButton)`
-  padding: 5px 10px 5px 10px;
+  padding: ${Platform.OS === 'ios' ? '5px 10px ' : '3px 10px'};
   border-radius: 5px;
   background-color: ${theme.colors.button_secondary};
 `;
@@ -71,6 +72,7 @@ export const PurchaseButton = styled(RectButton)`
 export const ButtonTitle = styled.Text`
   color: white;
   font-weight: 700;
+  font-size: ${({ theme }) => theme.fontSize.text_sm}px;
 `;
 
 export const EventThumb = styled.Image`
