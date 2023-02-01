@@ -1,1 +1,1 @@
-export * from './firestore/EventsService';
+export * from './firestore/eventsService';

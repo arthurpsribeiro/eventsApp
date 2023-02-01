@@ -10,13 +10,14 @@ type EventSpotT = {
   state: string;
 };
 
-type EventDataT = {
+export type EventDataT = {
   id: string;
   name: string;
   spot: EventSpotT;
   date: FirebaseFirestoreTypes.Timestamp;
   price: string;
   category: string;
+  keyWords: string[];
   image: string;
 };
 

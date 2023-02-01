@@ -21,53 +21,30 @@ export const EventsProvider: React.FC<IEventsProviderProps> = ({
   children,
 }: IEventsProviderProps) => {
   const [events, setEvents] = useState<EventT[] | null>(null);
-  const [eventsForSearch, setEventsForSearch] = useState<EventT[] | null>(
-    events,
-  );
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
+  const updateEventsCallback = (eventsData: EventT[]) => {
+    setEvents(eventsData);
+    setLoading(false);
+  };
+
+  const fetchData = () => {
+    EventsService.getAllEvents(updateEventsCallback);
+  };
+
+  const searchEvent = async (searchParam: string) => {
+    if (searchParam.length < 3) return fetchData();
     try {
-      const data = await EventsService.getAllEvents();
+      setLoading(true);
+      const data = await EventsService.searchEvents(searchParam.toLowerCase());
+      if (!data || data.length < 1) return setLoading(false);
       setEvents(data);
-      setEventsForSearch(data);
       setLoading(false);
     } catch (err: any) {
       setError(err.message);
       setLoading(false);
     }
-  };
-
-  /*
-   *
-   *
-   *firestore query methods are not working with search parameters, need to change implementation
-   *
-   *const searchEvent = async (searchParam: string) => {
-   *  try {
-   *    const data = await EventsService.searchEvents(searchParam);
-   *    if (data.length < 1) {
-   *      fetchData();
-   *      return;
-   *    }
-   *    setEvents(data);
-   *    setLoading(false);
-   *  } catch (err: any) {
-   *    setError(err.message);
-   *    setLoading(false);
-   *  }
-   *};
-   */
-
-  const searchEvent = (searchParam: string): void => {
-    if (!eventsForSearch) {
-      return;
-    }
-    const searchResult: EventT[] = eventsForSearch?.filter(event =>
-      event.name.toLowerCase().includes(searchParam.toLowerCase()),
-    );
-    setEvents(searchResult);
   };
 
   useEffect(() => {

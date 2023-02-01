@@ -33,6 +33,7 @@ export type EventT = {
   spot: EventSpotT;
   date: string;
   price: string;
+  keyWords: string[];
   category: EventCategories;
 };
 

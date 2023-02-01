@@ -1,13 +1,11 @@
 import { formatEventData } from '../../utils/formatters/eventsFormatter';
-import { eventsCollection } from './Firestore';
+import { eventsCollection } from './firestore';
 
 import { EventT } from '../../components/Event/EventItem';
 
-const getAllEvents = async (): Promise<EventT[]> => {
-  try {
-    const eventsSnapshot = await eventsCollection.get();
-
-    const data = eventsSnapshot.docs.map(doc => {
+const getAllEvents = (eventsUpdatecallback: (data: EventT[]) => void): void => {
+  eventsCollection.onSnapshot(eventSnapshot => {
+    const data = eventSnapshot.docs.map(doc => {
       const formatedEvent = formatEventData({
         id: doc.id,
         date: doc.data().date,
@@ -15,23 +13,21 @@ const getAllEvents = async (): Promise<EventT[]> => {
         category: doc.data().category,
         spot: doc.data().spot,
         price: doc.data().price,
+        keyWords: doc.data().keyWords,
         image: doc.data().image,
       });
       return formatedEvent;
     });
 
-    return data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+    eventsUpdatecallback(data);
+  });
 };
 
 const searchEvents = async (searchParam: string) => {
   try {
     const eventsSnapshot = await eventsCollection
+      .where('keyWords', 'array-contains', searchParam.toLowerCase())
       .orderBy('name')
-      .where('name', 'array-contains', searchParam)
       .get();
 
     const data = eventsSnapshot.docs.map(doc => {
@@ -42,11 +38,11 @@ const searchEvents = async (searchParam: string) => {
         category: doc.data().category,
         spot: doc.data().spot,
         price: doc.data().price,
+        keyWords: doc.data().keyWords,
         image: doc.data().image,
       });
       return formatedEvent;
     });
-
     return data;
   } catch (error) {
     console.log(error);
