@@ -46,6 +46,7 @@ export const InfoRow = styled.View`
 export const Title = styled.Text`
   font-size: ${theme.fontSize.text_sm}px;
   font-weight: 600;
+  color: ${theme.colors.text_dark};
 `;
 
 export const InfoText = styled.Text`
@@ -58,6 +59,7 @@ export const InfoText = styled.Text`
 export const PriceText = styled.Text`
   font-size: ${theme.fontSize.text_sm}px;
   font-weight: 600;
+  color: ${theme.colors.text_dark};
 `;
 
 export const PurchaseButton = styled(RectButton)`

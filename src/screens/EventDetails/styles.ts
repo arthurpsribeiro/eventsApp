@@ -49,6 +49,7 @@ export const ContentContainer = styled.View`
 export const EventTitle = styled.Text`
   font-size: ${theme.fontSize.text_lg}px;
   font-weight: 600;
+  color: ${theme.colors.text_dark};
 `;
 
 export const InfoWrapper = styled.View``;
@@ -57,6 +58,7 @@ export const InfoLabel = styled.Text`
   font-size: ${theme.fontSize.text_sm}px;
   font-weight: 600;
   margin-bottom: 4px;
+  color: ${theme.colors.text_dark};
 `;
 
 export const InfoText = styled.Text`
