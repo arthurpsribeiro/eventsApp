@@ -3,8 +3,10 @@ import { eventsCollection } from './firestore';
 
 import { EventT } from '../../components/Event/EventItem';
 
-const getAllEvents = (eventsUpdatecallback: (data: EventT[]) => void): void => {
-  eventsCollection.onSnapshot(eventSnapshot => {
+const getAllEvents = (
+  eventsUpdatecallback: (data: EventT[]) => void,
+): (() => void) => {
+  const subscribe = eventsCollection.onSnapshot(eventSnapshot => {
     const data = eventSnapshot.docs.map(doc => {
       const formatedEvent = formatEventData({
         id: doc.id,
@@ -18,9 +20,9 @@ const getAllEvents = (eventsUpdatecallback: (data: EventT[]) => void): void => {
       });
       return formatedEvent;
     });
-
     eventsUpdatecallback(data);
   });
+  return subscribe;
 };
 
 const searchEvents = async (searchParam: string) => {

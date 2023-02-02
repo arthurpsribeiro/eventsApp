@@ -29,9 +29,7 @@ export const EventsProvider: React.FC<IEventsProviderProps> = ({
     setLoading(false);
   };
 
-  const fetchData = () => {
-    EventsService.getAllEvents(updateEventsCallback);
-  };
+  const fetchData = () => EventsService.getAllEvents(updateEventsCallback);
 
   const searchEvent = async (searchParam: string) => {
     if (searchParam.length < 3) return fetchData();
@@ -48,7 +46,8 @@ export const EventsProvider: React.FC<IEventsProviderProps> = ({
   };
 
   useEffect(() => {
-    fetchData();
+    const subscriber = fetchData();
+    return () => subscriber();
   }, []);
 
   return (
