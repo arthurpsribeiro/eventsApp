@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, FlatList } from 'react-native';
 import { useEvents } from '../../hooks';
-import { EventT, EventItem, Search } from '../../components';
+import { EventT, EventItem, Search, EventListEmpty } from '../../components';
 
 import { Container, Loading, Separator, VerticalSpacing } from './styles';
 
@@ -27,6 +27,7 @@ const Home: React.FC = () => {
             />
           )}
           ItemSeparatorComponent={Separator}
+          ListEmptyComponent={EventListEmpty}
           showsVerticalScrollIndicator={false}
         />
       )}
