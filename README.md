@@ -27,7 +27,7 @@ cd eventsApp
 yarn
 ```
 
-4. instale as dependências utilizando cocoapods
+3.1. (iOS) instale as dependências utilizando cocoapods
 
 ```
 cd ios && pod install && cd ..
@@ -39,8 +39,8 @@ cd ios && pod install && cd ..
 yarn start
 ```
 
-5. Em outro terminal, inicialize o emulador
+5. Em outro terminal, inicialize o emulador de sua preferência
 
 ```
-yarn ios
+yarn android | yarn ios
 ```
