@@ -1,27 +1,43 @@
 import 'react-native-gesture-handler';
 
 import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components/native';
 
 import theme from './src/styles/theme';
-import { EventsProvider } from './src/contexts';
+import AppProvider from './src/contexts';
 import RootStackNavigator from './src/routes/stackRoutes';
 
 const App = () => {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <EventsProvider>
+    <SafeAreaProvider>
+      <GestureHandlerRootView style={styles.container}>
         <ThemeProvider theme={theme}>
-          <SafeAreaView style={{ flex: 1 }}>
-            <StatusBar />
-            <RootStackNavigator />
-          </SafeAreaView>
+          <AppProvider>
+            <SafeAreaView
+              style={styles.container}
+              edges={['top', 'right', 'left']}>
+              <StatusBar
+                barStyle={'dark-content'}
+                backgroundColor="transparent"
+                translucent
+              />
+              <RootStackNavigator />
+            </SafeAreaView>
+          </AppProvider>
         </ThemeProvider>
-      </EventsProvider>
-    </GestureHandlerRootView>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background_primary,
+  },
+});
 
 export default App;
