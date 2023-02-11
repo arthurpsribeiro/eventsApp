@@ -2,13 +2,17 @@ import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { css } from 'styled-components';
 
-import { EventCategories } from '.';
 import theme from '../../../styles/theme';
 import { Platform } from 'react-native';
 
 type ItemContainerProps = {
   category: EventCategories;
 };
+
+enum EventCategories {
+  BUSINESS,
+  EDUCATION,
+}
 
 const categoriesColorsTable = new Map<EventCategories, string>([
   [EventCategories.BUSINESS, theme.colors.main],
@@ -72,7 +76,7 @@ export const PurchaseButton = styled(RectButton)`
 export const ButtonTitle = styled.Text`
   color: white;
   font-weight: 700;
-  font-size: ${({ theme }) => theme.fontSize.text_sm}px;
+  font-size: ${theme.fontSize.text_sm}px;
 `;
 
 export const EventThumb = styled.Image`

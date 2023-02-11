@@ -10,8 +10,8 @@
     "skipLibCheck": true,                  /* Skip type checking all .d.ts files. */
     "types": [
       "node",
-      "@types/styled-components-react-native"
-
+      "@types/styled-components-react-native",
+      "jest"
     ]  
   }
 }

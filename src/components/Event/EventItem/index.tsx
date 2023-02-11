@@ -1,6 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { HomeScreenNavigationProps } from '../../../routes/stackRoutes/HomeStack';
 
 import {
   Container,
@@ -39,22 +37,17 @@ export type EventT = {
 
 interface IEventItemProps {
   event: EventT;
-  purchaseButtonCallBack: () => void;
+  purchaseButtonCallback: () => void;
+  eventPressCallback: () => void;
 }
 
 const EventItem: React.FC<IEventItemProps> = ({
   event,
-  purchaseButtonCallBack,
+  purchaseButtonCallback,
+  eventPressCallback,
 }: IEventItemProps) => {
-  const navigation = useNavigation<HomeScreenNavigationProps>();
-
-  const handleEventPress = (singleEvent: EventT) => {
-    // console.log('id', singleEvent);
-    navigation.navigate('EventDetails', { event: singleEvent });
-  };
-
   return (
-    <TouchableWrapper onPress={() => handleEventPress(event)}>
+    <TouchableWrapper onPress={() => eventPressCallback()}>
       <Container category={event.category}>
         <EventThumb source={{ uri: event.image }} />
         <InfoContainer>
@@ -66,7 +59,7 @@ const EventItem: React.FC<IEventItemProps> = ({
 
           <InfoRow>
             <PriceText>R$ {event.price}</PriceText>
-            <PurchaseButton onPress={() => purchaseButtonCallBack()}>
+            <PurchaseButton onPress={() => purchaseButtonCallback()}>
               <ButtonTitle> Comprar </ButtonTitle>
             </PurchaseButton>
           </InfoRow>
